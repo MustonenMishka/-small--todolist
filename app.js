@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+require('dotenv').config();
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://mishka:1994-455@cluster0-mqcnk.mongodb.net/todolistDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const itemsSchema = {
     name: String
@@ -20,11 +21,9 @@ const Item = mongoose.model("Item", itemsSchema);
 const item1 = new Item({
     name: "Eat dinner"
 });
-
 const item2 = new Item({
     name: "Do homework"
 });
-
 const item3 = new Item({
     name: "Watch movie"
 });
