@@ -13,7 +13,7 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
-const itgitemsSchema = {
+const itemsSchema = {
     name: String
 };
 const Item = mongoose.model("Item", itemsSchema);
